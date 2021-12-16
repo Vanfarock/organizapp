@@ -1,9 +1,11 @@
-import 'styled-components';interface IPalette {
-  main: string
-  contrast: string
+import 'styled-components/native';
+
+interface IPalette {
+  main: string;
+  contrast: string;
 }
 
-declare module 'styled-components' {
+declare module 'styled-components/native' {
   export interface DefaultTheme {
     backgroundColor: IPallete,
   }
