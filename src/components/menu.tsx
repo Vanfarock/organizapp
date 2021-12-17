@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { Link } from 'react-router-native';
+import { Link, useLocation, useMatch } from 'react-router-native';
 
 const MenuContainer = styled.View`
   display: flex;
@@ -26,26 +26,67 @@ const MenuItem = styled(Link)`
   padding: 10px 0;
 `;
 
+const MenuIcon = styled(Icon)`
+  color: ${props => props.theme.navColor};
+`;
+
+interface MenuIconCustomColor {
+  customColor: string;
+}
+
+const MenuActiveIcon = styled(Icon)<MenuIconCustomColor>`
+  color: ${props => props.theme[`${props.customColor}Color`] as string};
+`;
+
+interface MenuItemInfo {
+  route: string;
+  icon: string;
+}
+
 export default function Menu() {
   const DEFAULT_ICON_SIZE = 25;
+  const DEFAULT_PAGE = 'calendar';
+
+  const location = useLocation();
+
+  const items: MenuItemInfo[] = [
+    { route: 'feed', icon: 'users' },
+    { route: 'investment', icon: 'money' },
+    { route: 'home', icon: 'home' },
+    { route: 'calendar', icon: 'calendar' },
+    { route: 'settings', icon: 'gears' },
+  ];
+
+  const renderActiveMenuItem = (item: MenuItemInfo) => (
+    <MenuItem key={item.icon} 
+              underlayColor={'transparent'} 
+              to={item.route}>
+      <MenuActiveIcon name={item.icon} size={DEFAULT_ICON_SIZE} customColor={item.route} />
+    </MenuItem> 
+  )
+
+  const renderMenuItem = (item: MenuItemInfo) => (
+    <MenuItem key={item.icon} 
+              underlayColor={'transparent'} 
+              to={item.route}>
+      <MenuIcon name={item.icon} size={DEFAULT_ICON_SIZE} />
+    </MenuItem>  
+  );
 
   return (
     <MenuContainer>
-      <MenuItem underlayColor={'transparent'} to="feed">
-        <Icon name="users" size={DEFAULT_ICON_SIZE} color="white" />
-      </MenuItem>
-      <MenuItem underlayColor={'transparent'} to="investment">
-        <Icon name="money" size={DEFAULT_ICON_SIZE} color="white" />
-      </MenuItem>
-      <MenuItem underlayColor={'transparent'} to="home">
-        <Icon name="home" size={DEFAULT_ICON_SIZE} color="white" />
-      </MenuItem>
-      <MenuItem underlayColor={'transparent'} to="calendar">
-        <Icon name="calendar" size={DEFAULT_ICON_SIZE} color="white" />
-      </MenuItem>
-      <MenuItem underlayColor={'transparent'} to="settings">
-        <Icon name="gears" size={DEFAULT_ICON_SIZE} color="white" />
-      </MenuItem>
+      {items.map((item: MenuItemInfo) => {
+        if ((!location || !location.pathname || location.pathname === '/') && DEFAULT_PAGE === item.route) {
+          return renderActiveMenuItem(item);
+        }
+
+        const match = useMatch(item.route);
+        if (match) {
+          return renderActiveMenuItem(item);
+        } else {
+          return renderMenuItem(item);
+        }
+      })}
     </MenuContainer>
   )
 }

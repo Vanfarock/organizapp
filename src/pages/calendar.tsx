@@ -7,7 +7,7 @@ import { getTimings, Timing } from '../services/calendarService';
 
 const CalendarContainer = styled.View`
   flex: 1;
-  padding: ${props => props.theme.horizontalWhitespace};
+  padding: 0 ${props => props.theme.horizontalWhitespace};
 `;
 
 const HeaderContainer = styled.View`
@@ -41,7 +41,7 @@ const ScheduleRow = styled.View`
 const Time = styled.Text`
   font-size: 16px;
 
-  color: ${props => props.theme.calendarColor.main};
+  color: ${props => props.theme.calendarColor};
 `;
 
 const Description = styled.Text`
@@ -50,7 +50,7 @@ const Description = styled.Text`
   text-align: center;
   font-size: 16px;
   
-  color: ${props => props.theme.calendarColor.main};
+  color: ${props => props.theme.calendarColor};
 
   overflow: hidden;
 `;

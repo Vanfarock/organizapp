@@ -8,8 +8,18 @@ interface IPalette {
 declare module 'styled-components/native' {
   export interface DefaultTheme {
     horizontalWhitespace: string,
+    
     foregroundColor: string,
     backgroundColor: IPallete,
-    calendarColor: IPalette,
+    
+    navColor: string,
+
+    feedColor: string,
+    investmentColor: string,
+    homeColor: string,
+    calendarColor: string,
+    settingsColor: string,
+
+    [key: string]: string | IPalette;
   }
 }
