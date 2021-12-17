@@ -8,12 +8,20 @@ import Home from './src/pages/home';
 import Settings from './src/pages/settings';
 import Feed from './src/pages/feed';
 import Investments from './src/pages/investments';
-import User from './src/pages/user';
+import Calendar from './src/pages/calendar';
+import { Platform } from 'react-native';
+import Header from './src/components/header';
+import flexComponent from './src/hoc/flexComponent';
 
-const AppContainer = styled.View`
+const AppContainer = styled.SafeAreaView`
+  flex: 1;
+  overflow: scroll;
+  
+  height: 100%;
+  padding-top: ${() => Platform.OS === 'android' ? '25px' : '0'};
+  
   border: 1px solid black;
   background-color: ${props => props.theme.backgroundColor.main};
-  height: 100%;
 `;
 
 export default function App() {
@@ -21,14 +29,17 @@ export default function App() {
     <ThemeProvider theme={dark}>
       <NativeRouter>
         <AppContainer>
+          <Header />
+
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="home" element={<Home />} />
-            <Route path="investment" element={<Investments />} />
-            <Route path="feed" element={<Feed />} />
-            <Route path="user" element={<User />} />
-            <Route path="settings" element={<Settings />} />
+            <Route path="/" element={flexComponent(Calendar)} />
+            <Route path="home" element={flexComponent(Home)} />
+            <Route path="investment" element={flexComponent(Investments)} />
+            <Route path="feed" element={flexComponent(Feed)} />
+            <Route path="calendar" element={flexComponent(Calendar)} />
+            <Route path="settings" element={flexComponent(Settings)} />
           </Routes>
+          
           <Menu />
         </AppContainer>
       </NativeRouter>
