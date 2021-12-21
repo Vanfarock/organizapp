@@ -3,6 +3,7 @@ import { TextProps } from 'react-native'
 import styled from 'styled-components/native'
 
 const StyledText = styled.Text`
+  color: ${props => props.theme.backgroundColor.contrast};
   /* font-family: ${props => props.theme.fontFamily}; */
 `;
 

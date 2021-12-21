@@ -1,11 +1,11 @@
 import 'styled-components/native';
 
-interface IPalette {
-  main: string;
-  contrast: string;
-}
-
 declare module 'styled-components/native' {
+  export interface IPalette {
+    main: string;
+    contrast: string;
+  }
+  
   export interface DefaultTheme {
     fontFamily: string,
     
@@ -16,11 +16,11 @@ declare module 'styled-components/native' {
     
     navColor: string,
 
-    feedColor: string,
-    investmentColor: string,
-    homeColor: string,
-    calendarColor: string,
-    settingsColor: string,
+    feedColor: IPallete,
+    investmentColor: IPallete,
+    homeColor: IPallete,
+    calendarColor: IPallete,
+    settingsColor: IPallete,
 
     [key: string]: string | IPalette;
   }

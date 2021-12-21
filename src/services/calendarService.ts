@@ -1,10 +1,10 @@
-export interface Timing {
+export interface ITiming {
   time: string;
   description: string;
 }
 
-export function getTimings() : Timing[] {
-  const timings: Timing[] = [];
+export function getTimings() : ITiming[] {
+  const timings: ITiming[] = [];
   
   for (let i = 0; i < 24; i++) {
     const hour = i.toString().padStart(2, '0');

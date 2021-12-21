@@ -13,11 +13,26 @@ const dark: DefaultTheme = {
   
   navColor: '#85817E',
   
-  feedColor: '#FFF',
-  investmentColor: '#F2FF8C',
-  homeColor: '#FFCCCB',
-  calendarColor: '#A7D3FF',
-  settingsColor: '#FFF',
+  feedColor: {
+    main: '#FFF',
+    contrast: '#292524',
+  },
+  investmentColor: {
+    main: '#F2FF8C',
+    contrast: '#292524',
+  },
+  homeColor: {
+    main: '#FFCCCB',
+    contrast: '#292524',
+  },
+  calendarColor: {
+    main: '#A7D3FF',
+    contrast: '#292524',
+  },
+  settingsColor: {
+    main: '#FFF',
+    contrast: '#292524',
+  },
 }
 
 export default dark;

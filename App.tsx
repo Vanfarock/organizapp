@@ -32,7 +32,7 @@ export default function App() {
           <Header />
 
           <Routes>
-            <Route path="/" element={mainContentComponent(Investments)} />
+            <Route path="/" element={mainContentComponent(Feed)} />
             <Route path="home" element={mainContentComponent(Home)} />
             <Route path="investment" element={mainContentComponent(Investments)} />
             <Route path="feed" element={mainContentComponent(Feed)} />

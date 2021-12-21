@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { FlatList, ListRenderItem } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import styled from 'styled-components/native'
-import { getTimings, Timing } from '../services/calendarService';
+import { getTimings, ITiming } from '../services/calendarService';
 import Button from '../shared/button';
 import Text from '../shared/text';
 
@@ -39,7 +39,7 @@ const ScheduleRow = styled.View`
 const Time = styled(Text)`
   font-size: 16px;
 
-  color: ${props => props.theme.calendarColor};
+  color: ${props => props.theme.calendarColor.main};
 `;
 
 const Description = styled(Text)`
@@ -48,7 +48,7 @@ const Description = styled(Text)`
   text-align: center;
   font-size: 16px;
   
-  color: ${props => props.theme.calendarColor};
+  color: ${props => props.theme.calendarColor.main};
 
   overflow: hidden;
 `;
@@ -56,13 +56,13 @@ const Description = styled(Text)`
 export default function Calendar() {
   const DEFAULT_ICON_SIZE = 20;
 
-  const [timings, setTimings] = useState<Timing[]>([]);
+  const [timings, setTimings] = useState<ITiming[]>([]);
 
   useEffect(() => {
     setTimings(getTimings());
   }, [])
 
-  const renderItem: ListRenderItem<Timing> = ({ item }: { item: Timing }) => (
+  const renderItem: ListRenderItem<ITiming> = ({ item }: { item: ITiming }) => (
     <ScheduleRow key={item.time}>
       <Time>{item.time}</Time>
       <Description numberOfLines={1}>{item.description}</Description>
@@ -75,10 +75,10 @@ export default function Calendar() {
         <Button type="clear" icon={<AddIcon name="plus" size={DEFAULT_ICON_SIZE} />} />
       </HeaderContainer>
 
-      <FlatList<Timing>
+      <FlatList<ITiming>
         data={timings}
         renderItem={renderItem}
-        keyExtractor={(item: Timing) => item.time} />
+        keyExtractor={(item: ITiming) => item.time} />
     </CalendarContainer>
   )
 }

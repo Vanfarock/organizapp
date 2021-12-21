@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components/native';
+import styled, { IPalette } from 'styled-components/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Link, useLocation, useMatch } from 'react-router-native';
 
@@ -35,7 +35,7 @@ interface MenuIconCustomColor {
 }
 
 const MenuActiveIcon = styled(Icon)<MenuIconCustomColor>`
-  color: ${props => props.theme[`${props.customColor}Color`] as string};
+  color: ${props => (props.theme[props.customColor + 'Color'] as IPalette).main};
 `;
 
 interface MenuItemInfo {
@@ -45,7 +45,7 @@ interface MenuItemInfo {
 
 export default function Menu() {
   const DEFAULT_ICON_SIZE = 25;
-  const DEFAULT_PAGE = 'calendar';
+  const DEFAULT_PAGE = 'feed';
 
   const location = useLocation();
 

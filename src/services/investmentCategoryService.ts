@@ -1,10 +1,10 @@
-export interface InvestmentCategory {
+export interface IInvestmentCategory {
   description: string;
   value: number;
 }
 
-export function getInvestmentCategories() : InvestmentCategory[] {
-  const categories: InvestmentCategory[] = [
+export function getInvestmentCategories() : IInvestmentCategory[] {
+  const categories: IInvestmentCategory[] = [
     {
       description: 'Água',
       value: 100.05,
