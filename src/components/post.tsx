@@ -20,13 +20,15 @@ const PostContainer = styled.View<PostTypeProps>`
   margin-bottom: 15px;
   
   overflow: hidden;
-  border-radius: 3px;
+  border-radius: 1px;
 `;
 
 const PostImage = styled.Image`
   display: block;
   width: 100%;
   height: 200px;
+
+  border-radius: 3px;
 `;
 
 const PostContent = styled.View`
@@ -50,23 +52,56 @@ const ProfilePicture = styled.Image`
   border-radius: 50%;
 `;
 
-const PostText = styled(Text)<PostTypeProps>`
+const PostInfo = styled.View`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  flex: 1;
+`;
+
+const UserInfo = styled.View`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+`;
+
+const UserNickname = styled.Text`
+  color: ${props => props.theme.backgroundColor.main};
+  font-weight: bold;
+  margin-right: 5px;
+`;
+
+const UserIdentifier = styled.Text`
+  color: ${props => props.theme.backgroundColor.main}90;
+  font-weight: bold;
+`;
+
+const PostText = styled(Text) <PostTypeProps>`
   font-size: 14px;
   
-  color: ${props => (props.theme[props.type + 'Color'] as IPalette).contrast}
+  color: ${props => (props.theme[props.type + 'Color'] as IPalette).contrast};
 `;
 
 interface PostProps {
   post: IPost
 }
 
-export default function Post({ post }: PostProps) {  
+export default function Post({ post }: PostProps) {
   return (
     <PostContainer type={post.type as string}>
-      {post.image && <PostImage source={post.image} />}
       <PostContent>
         <ProfilePicture source={post.profilePicture} />
-        {post.text && <PostText type={post.type as string}>{post.text}</PostText>}
+        <PostInfo>
+          <UserInfo>
+            <UserNickname>{post.nickname}</UserNickname>
+            <UserIdentifier>@{post.identifier}</UserIdentifier>
+          </UserInfo>
+          {post.text && <PostText type={post.type as string}>{post.text}</PostText>}
+          {post.image && <PostImage source={post.image} />}
+        </PostInfo>
       </PostContent>
     </PostContainer>
   )

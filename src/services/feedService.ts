@@ -5,23 +5,28 @@ export interface IPost {
   id: string,
   image?: ImageSourcePropType;
   profilePicture: ImageSourcePropType;
+  nickname: string,
+  identifier: string,
   text?: string;
   type: PostType;
 }
 
-export function getPosts() : IPost[] {
+export function getPosts(): IPost[] {
   const posts: IPost[] = [
     {
       id: '1',
       image: require('../assets/images/koala.jpg'),
       profilePicture: require('../assets/images/koala.jpg'),
-      // text: 'Vivamus eget augue tempus, malesuada orci ac, condimentum felis. Vivamus dictum ac purus nec gravida. Vivamus sollicitudin eleifend massa',
+      nickname: "Koala",
+      identifier: "koalito",
       type: PostType.Investment,
     },
     {
       id: '2',
       image: require('../assets/images/koala.jpg'),
       profilePicture: require('../assets/images/koala.jpg'),
+      nickname: "Koala",
+      identifier: "koalito",
       text: 'Vivamus',
       type: PostType.Calendar,
     },
@@ -29,6 +34,8 @@ export function getPosts() : IPost[] {
       id: '3',
       image: require('../assets/images/koala.jpg'),
       profilePicture: require('../assets/images/koala.jpg'),
+      nickname: "Koala",
+      identifier: "koalito",
       text: 'Vivamus eget augue tempus',
       type: PostType.Home,
     },
@@ -36,6 +43,8 @@ export function getPosts() : IPost[] {
       id: '4',
       image: require('../assets/images/koala.jpg'),
       profilePicture: require('../assets/images/koala.jpg'),
+      nickname: "Koala",
+      identifier: "koalito",
       text: 'Vivamus eget augue tempus',
       type: PostType.Investment,
     },

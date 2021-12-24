@@ -1,7 +1,6 @@
 import React from 'react';
 import { NativeRouter, Route, Routes } from 'react-router-native';
-import { ThemeProvider } from 'styled-components/native';
-import styled from 'styled-components/native';
+import styled, { ThemeProvider } from 'styled-components/native';
 import dark from './src/styles/themes';
 import Menu from './src/components/menu';
 import Home from './src/pages/home';
@@ -32,14 +31,14 @@ export default function App() {
           <Header />
 
           <Routes>
-            <Route path="/" element={mainContentComponent(Feed)} />
+            <Route path="/" element={mainContentComponent(Settings)} />
             <Route path="home" element={mainContentComponent(Home)} />
             <Route path="investment" element={mainContentComponent(Investments)} />
             <Route path="feed" element={mainContentComponent(Feed)} />
             <Route path="calendar" element={mainContentComponent(Calendar)} />
             <Route path="settings" element={mainContentComponent(Settings)} />
           </Routes>
-          
+
           <Menu />
         </AppContainer>
       </NativeRouter>

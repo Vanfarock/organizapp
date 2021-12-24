@@ -34,7 +34,7 @@ interface MenuIconCustomColor {
   customColor: string;
 }
 
-const MenuActiveIcon = styled(Icon)<MenuIconCustomColor>`
+const MenuActiveIcon = styled(Icon) <MenuIconCustomColor>`
   color: ${props => (props.theme[props.customColor + 'Color'] as IPalette).main};
 `;
 
@@ -45,7 +45,7 @@ interface MenuItemInfo {
 
 export default function Menu() {
   const DEFAULT_ICON_SIZE = 25;
-  const DEFAULT_PAGE = 'feed';
+  const DEFAULT_PAGE = 'settings';
 
   const location = useLocation();
 
@@ -58,26 +58,26 @@ export default function Menu() {
   ];
 
   const renderActiveMenuItem = (item: MenuItemInfo) => (
-    <MenuItem key={item.icon} 
-              underlayColor={'transparent'} 
-              to={item.route}>
+    <MenuItem key={item.icon}
+      underlayColor={'transparent'}
+      to={item.route}>
       <MenuActiveIcon name={item.icon} size={DEFAULT_ICON_SIZE} customColor={item.route} />
-    </MenuItem> 
+    </MenuItem>
   )
 
   const renderMenuItem = (item: MenuItemInfo) => (
-    <MenuItem key={item.icon} 
-              underlayColor={'transparent'} 
-              to={item.route}>
+    <MenuItem key={item.icon}
+      underlayColor={'transparent'}
+      to={item.route}>
       <MenuIcon name={item.icon} size={DEFAULT_ICON_SIZE} />
-    </MenuItem>  
+    </MenuItem>
   );
 
   return (
     <MenuContainer>
       {items.map((item: MenuItemInfo) => {
         const match = useMatch(item.route);
-        
+
         if ((!location || !location.pathname || location.pathname === '/') && DEFAULT_PAGE === item.route) {
           return renderActiveMenuItem(item);
         }
